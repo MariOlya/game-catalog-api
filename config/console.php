@@ -1,5 +1,7 @@
 <?php
 
+use yii\faker\FixtureController;
+
 $params = require __DIR__ . '/params.php';
 $db = require __DIR__ . '/db.php';
 
@@ -28,13 +30,15 @@ $config = [
         'db' => $db,
     ],
     'params' => $params,
-    /*
     'controllerMap' => [
         'fixture' => [ // Fixture generation command line.
-            'class' => 'yii\faker\FixtureController',
+            'class' => FixtureController::class,
+            'templatePath' => '@app/fixtures/templates',
+            'fixtureDataPath' => '@app/fixtures/data',
+            'namespace' => 'app\fixtures',
         ],
     ],
-    */
+
 ];
 
 if (YII_ENV_DEV) {
