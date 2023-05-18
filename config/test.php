@@ -1,4 +1,7 @@
 <?php
+
+use game\domain\models\User;
+
 $params = require __DIR__ . '/params.php';
 $db = require __DIR__ . '/test_db.php';
 
@@ -29,7 +32,7 @@ return [
             'showScriptName' => true,
         ],
         'user' => [
-            'identityClass' => 'app\models\User',
+            'identityClass' => User::class,
         ],
         'request' => [
             'cookieValidationKey' => 'test',

@@ -13,6 +13,11 @@
         "source": "https://github.com/yiisoft/yii2"
     },
     "minimum-stability": "stable",
+    "autoload": {
+        "psr-4": {
+            "game\\": "src/"
+        }
+    },
     "require": {
         "php": ">=7.4.0",
         "yiisoft/yii2": "~2.0.45",
