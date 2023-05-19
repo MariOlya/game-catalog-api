@@ -5,5 +5,5 @@
  * @var $index integer
  */
 return [
-    'genre' => $faker->unique()->realTextBetween(5, 20),
+    'genre' => $faker->unique()->word(),
 ];

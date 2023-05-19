@@ -2,63 +2,63 @@
 
 return [
     'genre0' => [
-        'genre' => 'My notion was that.',
+        'genre' => 'voluptas',
     ],
     'genre1' => [
-        'genre' => 'Bill, the Lizard).',
+        'genre' => 'quia',
     ],
     'genre2' => [
-        'genre' => 'I\'ve finished.\' So.',
+        'genre' => 'laborum',
     ],
     'genre3' => [
-        'genre' => 'As for pulling me.',
+        'genre' => 'dolorem',
     ],
     'genre4' => [
-        'genre' => 'Queen said.',
+        'genre' => 'vel',
     ],
     'genre5' => [
-        'genre' => 'But here, to.',
+        'genre' => 'porro',
     ],
     'genre6' => [
-        'genre' => 'Queen. \'I haven\'t.',
+        'genre' => 'eveniet',
     ],
     'genre7' => [
-        'genre' => 'Rabbit, and had.',
+        'genre' => 'sed',
     ],
     'genre8' => [
-        'genre' => 'Queen, but she saw.',
+        'genre' => 'sit',
     ],
     'genre9' => [
-        'genre' => 'Duchess: \'and the.',
+        'genre' => 'rem',
     ],
     'genre10' => [
-        'genre' => 'Alice, as she.',
+        'genre' => 'eius',
     ],
     'genre11' => [
-        'genre' => 'Alice \'without.',
+        'genre' => 'et',
     ],
     'genre12' => [
-        'genre' => 'Caucus-race.\'.',
+        'genre' => 'nam',
     ],
     'genre13' => [
-        'genre' => 'Alice, \'and if it.',
+        'genre' => 'occaecati',
     ],
     'genre14' => [
-        'genre' => 'Queen?\' said the.',
+        'genre' => 'ratione',
     ],
     'genre15' => [
-        'genre' => 'King. \'I can\'t.',
+        'genre' => 'ullam',
     ],
     'genre16' => [
-        'genre' => 'There were doors.',
+        'genre' => 'aut',
     ],
     'genre17' => [
-        'genre' => 'I think?\' he said.',
+        'genre' => 'excepturi',
     ],
     'genre18' => [
-        'genre' => 'I don\'t take this.',
+        'genre' => 'autem',
     ],
     'genre19' => [
-        'genre' => 'And it\'ll fetch.',
+        'genre' => 'saepe',
     ],
 ];
