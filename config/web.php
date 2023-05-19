@@ -44,14 +44,17 @@ $config = [
             ],
         ],
         'db' => $db,
-        /*
         'urlManager' => [
             'enablePrettyUrl' => true,
             'showScriptName' => false,
             'rules' => [
+                'api/games' => 'game/index',         // GET /api/games - Retrieve all games
+                'api/games/<id:\d+>' => 'game/view', // GET /api/games/1 - Retrieve a specific game
+                'api/games/create' => 'game/create', // POST /api/games/create - Create a new game
+                'api/games/update/<id:\d+>' => 'game/update', // PUT /api/games/update/1 - Update a game
+                'api/games/delete/<id:\d+>' => 'game/delete', // DELETE /api/games/delete/1 - Delete a game
             ],
         ],
-        */
     ],
     'params' => $params,
 ];
