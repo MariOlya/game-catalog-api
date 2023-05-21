@@ -4,6 +4,7 @@ namespace game\application\services\gameGenre;
 
 use game\application\factories\dto\NewGameGenreDto;
 use game\application\factories\dto\NewGenreDto;
+use game\application\factories\GenreFactory;
 use game\application\factories\interfaces\GameGenreFactoryInterface;
 use game\application\factories\interfaces\GenreFactoryInterface;
 use game\application\repositories\interfaces\GenreRepositoryInterface;
@@ -12,12 +13,13 @@ use game\application\services\gameGenre\interfaces\GameGenreServiceInterface;
 use game\domain\models\Game;
 use game\domain\models\GameGenre;
 use game\domain\models\Genre;
+use yii\db\Exception;
+use yii\db\StaleObjectException;
 
 class GameGenreService implements GameGenreServiceInterface
 {
     public function __construct(
         readonly GenreFactoryInterface $genreFactory,
-        readonly GameRepositoryInterface $gameRepository,
         readonly GenreRepositoryInterface $genreRepository,
         readonly GameGenreFactoryInterface $gameGenreFactory
     ) {
@@ -47,11 +49,15 @@ class GameGenreService implements GameGenreServiceInterface
         return $genreIds;
     }
 
-    public function updateRelations(int $gameId, array $addedGenreIds): void
+    /**
+     * @param Game $game
+     * @param array $addedGenreIds
+     * @return void
+     * @throws Exception
+     * @throws StaleObjectException
+     */
+    public function updateRelations(Game $game, array $addedGenreIds): void
     {
-        /** @var Game $game */
-        $game = $this->gameRepository->findById($gameId);
-
         $currentGameGenresIds = array_map(
             static function ($gameGenre) {
                 return $gameGenre->id;

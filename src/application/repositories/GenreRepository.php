@@ -11,6 +11,6 @@ class GenreRepository implements GenreRepositoryInterface
 {
     public function findAllByIds(array $genreIds): array
     {
-        return Genre::find()->where(['id' => $genreIds])->asArray()->all();
+        return Genre::find()->where(['id' => $genreIds])->all();
     }
 }

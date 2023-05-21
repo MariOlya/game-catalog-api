@@ -11,16 +11,12 @@ use yii\db\ActiveRecord;
 
 class GenreFactory implements GenreFactoryInterface
 {
-    public function __construct(
-        readonly Genre $genre
-    ) {
-    }
-
     public function createNewGenre(NewGenreDto $dto): Genre|ActiveRecord
     {
-        $this->genre->genre = $dto->genre;
-        $this->genre->save();
+        $newGenre = new Genre();
+        $newGenre->genre = $dto->genre;
+        $newGenre->save();
 
-        return $this->genre;
+        return $newGenre;
     }
 }

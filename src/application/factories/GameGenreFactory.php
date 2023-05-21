@@ -11,17 +11,13 @@ use yii\db\ActiveRecord;
 
 class GameGenreFactory implements GameGenreFactoryInterface
 {
-    public function __construct(
-        readonly GameGenre $gameGenre
-    ) {
-    }
-
     public function createNewRelationGameGenre(NewGameGenreDto $dto): GameGenre|ActiveRecord
     {
-        $this->gameGenre->game_id = $dto->gameId;
-        $this->gameGenre->genre_id = $dto->genreId;
-        $this->gameGenre->save();
+        $newRelation = new GameGenre();
+        $newRelation->game_id = $dto->gameId;
+        $newRelation->genre_id = $dto->genreId;
+        $newRelation->save();
 
-        return $this->gameGenre;
+        return $newRelation;
     }
 }

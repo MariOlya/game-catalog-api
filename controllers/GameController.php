@@ -58,8 +58,10 @@ class GameController extends ActiveController
      */
     public function prepareDataProvider(): array|object
     {
-        $genresData = Yii::$app->request->get('genres');
-        $genreNames = array_map(static fn ($genre) => strtolower($genre), explode(',', $genresData));
+        $genreNames = [];
+        if ($genresData = Yii::$app->request->get('genres')) {
+            $genreNames = array_map(static fn ($genre) => strtolower($genre), explode(',', $genresData));
+        }
 
         $games = $this->gameRepository->queryAllGames(Yii::$app->params['expandModelsForGame'], $genreNames);
 

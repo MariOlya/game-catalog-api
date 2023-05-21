@@ -5,7 +5,6 @@ declare(strict_types=1);
 namespace game\application\repositories;
 
 use game\application\factories\dto\NewStudioDto;
-use game\application\factories\interfaces\GenreFactoryInterface;
 use game\application\factories\interfaces\StudioFactoryInterface;
 use game\application\repositories\dto\UpdatedGameDto;
 use game\application\repositories\interfaces\GameRepositoryInterface;
@@ -24,7 +23,6 @@ class GameRepository implements GameRepositoryInterface
 {
     public function __construct(
         readonly StudioFactoryInterface $studioFactory,
-        readonly GenreFactoryInterface $genreFactory,
         readonly GameGenreServiceInterface $gameGenreService
     ) {
     }
@@ -47,7 +45,7 @@ class GameRepository implements GameRepositoryInterface
         if(!empty($genreNames)) {
             $games = $games->where(['in', 'genre', $genreNames]);
         }
-
+//TODO: Не работает лимит и оффсет, разобраться
         return $games->limit($limit)->offset($offset);
     }
 
@@ -65,6 +63,14 @@ class GameRepository implements GameRepositoryInterface
             ->one();
     }
 
+    public function findModelById(int $id, array $addModels = []): array|null|ActiveRecord
+    {
+        return Game::find()
+            ->joinWith($addModels)
+            ->where(['game.id' => $id])
+            ->one();
+    }
+
     /**
      * @param int $id
      * @param UpdatedGameDto $dto
@@ -75,7 +81,7 @@ class GameRepository implements GameRepositoryInterface
     public function updateGame(int $id, UpdatedGameDto $dto): Game|ActiveRecord
     {
         /** @var Game $game */
-        if (!$game = $this->findById($id)) {
+        if (!$game = $this->findModelById($id)) {
             throw new NotFoundHttpException('This game is not found', 404);
         }
 
@@ -102,8 +108,7 @@ class GameRepository implements GameRepositoryInterface
 
             if ($genres = $dto->getArrayGenreNames()) {
                 $newRelatedGenreIds = $this->gameGenreService->collectAllRelatedGenres($genres);
-                $this->gameGenreService->updateRelations($id, $newRelatedGenreIds);
-
+                $this->gameGenreService->updateRelations($game, $newRelatedGenreIds);
             }
 
             $transaction->commit();

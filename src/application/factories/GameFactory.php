@@ -25,7 +25,6 @@ class GameFactory implements GameFactoryInterface
     public function __construct(
         readonly Game $game,
         readonly StudioFactoryInterface $studioFactory,
-        readonly GenreFactoryInterface $genreFactory,
         readonly GameGenreFactoryInterface $gameGenreFactory,
         readonly GameGenreServiceInterface $gameGenreService
     ) {
@@ -54,6 +53,10 @@ class GameFactory implements GameFactoryInterface
             $this->game->studio_id = $studio->id;
             $this->game->save();
 
+            if (!$this->game->id) {
+                throw new HttpException(422, 'This game has already been added', 422);
+            }
+
             $newRelatedGenreIds = $this->gameGenreService->collectAllRelatedGenres($dto->getArrayGenreNames());
 
             foreach ($newRelatedGenreIds as $genreId) {
@@ -61,10 +64,6 @@ class GameFactory implements GameFactoryInterface
             }
 
             $transaction->commit();
-
-            if (!$this->game->id) {
-                throw new HttpException(422, 'This game has already been added', 422);
-            }
 
             return  $this->game;
 
