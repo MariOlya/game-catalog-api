@@ -64,7 +64,7 @@ class GameGenreService implements GameGenreServiceInterface
 
             /** @var GameGenre $genre */
             foreach ($genresWithDeletedRelation as $genre) {
-                $game->unlink('genres',$genre, true);
+                $game->unlink('genres', $genre, true);
             }
         }
 

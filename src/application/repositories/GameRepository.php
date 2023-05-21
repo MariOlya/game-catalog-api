@@ -32,17 +32,23 @@ class GameRepository implements GameRepositoryInterface
     /**
      * @param string[] $addModels
      * @param string[] $genreNames
+     * @param int $limit
+     * @param int $offset
      * @return Query|ActiveQuery
      */
-    public function queryAllGames(array $addModels = [], array $genreNames = []): Query|ActiveQuery
-    {
+    public function queryAllGames(
+        array $addModels = [],
+        array $genreNames = [],
+        int $limit = 50,
+        int $offset = 0
+    ): Query|ActiveQuery {
         $games = Game::find()->joinWith($addModels);
 
         if(!empty($genreNames)) {
             $games = $games->where(['in', 'genre', $genreNames]);
         }
 
-        return $games;
+        return $games->limit($limit)->offset($offset);
     }
 
     /**

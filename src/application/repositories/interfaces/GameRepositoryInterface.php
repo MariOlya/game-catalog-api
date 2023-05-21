@@ -12,7 +12,7 @@ use yii\db\Query;
 
 interface GameRepositoryInterface
 {
-    public function queryAllGames(array $addModels = [], array $genreNames = []): Query|ActiveQuery;
+    public function queryAllGames(array $addModels = [], array $genreNames = [], int $limit = 50, int $offset = 0): Query|ActiveQuery;
 
     public function findById(int $id, array $addModels = []): array|null|ActiveRecord;
 
