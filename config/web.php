@@ -1,5 +1,6 @@
 <?php
 
+use yii\web\JsonParser;
 use game\domain\models\User;
 
 $params = require __DIR__ . '/params.php';
@@ -17,6 +18,9 @@ $config = [
         'request' => [
             // !!! insert a secret key in the following (if it is empty) - this is required by cookie validation
             'cookieValidationKey' => 'Y8_s8-6VrhNYFHLcQHigCwvITCMZUteq',
+            'parsers' => [
+                'application/json' => JsonParser::class
+            ],
         ],
         'cache' => [
             'class' => 'yii\caching\FileCache',

@@ -160,3 +160,36 @@ vendor/bin/codecept run unit --coverage --coverage-html --coverage-xml
 ```
 
 You can see code coverage output under the `tests/_output` directory.
+
+REST API
+--------
+
+1. `GET /api/games` - Retrieve all games
+
+*Params*
+- 'expand' = 'studio', 'genres' - shows games with these relation data
+- 'genres' = any string with genre(s) with coma without space  - shows games of only concrete genre(s)
+
+
+2. `GET /api/games/<id>` - Retrieve a specific game
+
+*Params*
+- 'expand' = 'studio', 'genres' - shows games with these relation data
+
+
+3. `POST /api/games/create` - Create a new game (always create and return with studio and genres)
+
+*Params (required)*
+- 'name' = name of game
+- 'studio' = name of studio
+- 'genresData' = name(s) of genre(s)
+
+4. `PUT /api/games/update/<id>` - Update a game (always return with studio and genres)
+
+*Params (optional)*
+- 'name' = name of game
+- 'studio' = name of studio
+- 'genresData' = name(s) of genre(s)
+
+
+5. `DELETE /api/games/delete/<id>` - Delete a game (without params)
