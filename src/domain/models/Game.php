@@ -80,4 +80,14 @@ class Game extends \yii\db\ActiveRecord
     {
         return $this->hasOne(Studio::class, ['id' => 'studio_id']);
     }
+
+    public function fields()
+    {
+        return ['id', 'name'];
+    }
+
+    public function extraFields()
+    {
+        return ['studio', 'genres'];
+    }
 }
