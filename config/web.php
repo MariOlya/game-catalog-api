@@ -1,5 +1,6 @@
 <?php
 
+use game\infrastructure\modules\Bootstrap;
 use yii\web\JsonParser;
 use game\domain\models\User;
 
@@ -9,7 +10,10 @@ $db = require __DIR__ . '/db.php';
 $config = [
     'id' => 'basic',
     'basePath' => dirname(__DIR__),
-    'bootstrap' => ['log'],
+    'bootstrap' => [
+        'log',
+        Bootstrap::class
+    ],
     'aliases' => [
         '@bower' => '@vendor/bower-asset',
         '@npm'   => '@vendor/npm-asset',
