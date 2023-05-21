@@ -61,7 +61,7 @@ class GameController extends ActiveController
         $genresData = Yii::$app->request->get('genres');
         $genreNames = array_map(static fn ($genre) => strtolower($genre), explode(',', $genresData));
 
-        $games = $this->gameRepository->queryAllGames(['studio', 'genres'], $genreNames);
+        $games = $this->gameRepository->queryAllGames(Yii::$app->params['expandModelsForGame'], $genreNames);
 
         return Yii::createObject([
             'class' => ActiveDataProvider::class,
@@ -94,7 +94,7 @@ class GameController extends ActiveController
         $newGameId = $newGame->id;
 
         Yii::$app->response->statusCode = 201;
-        return $this->gameRepository->findById($newGameId, ['studio', 'genres']);
+        return $this->gameRepository->findById($newGameId, Yii::$app->params['expandModelsForGame']);
     }
 
     /**
@@ -117,6 +117,8 @@ class GameController extends ActiveController
         );
 
         $this->gameRepository->updateGame($id, $updatedGameDto);
-        return $this->redirect('http://localhost:8000/api/games/' . $id . '?expand=studio, genres');
+        return $this->redirect(
+            Yii::$app->params['baseApiRoute'] . '/games/' . $id . '?' . Yii::$app->params['expandParamForRoute']
+        );
     }
 }
