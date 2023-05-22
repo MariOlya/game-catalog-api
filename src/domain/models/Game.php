@@ -4,6 +4,9 @@ declare(strict_types=1);
 
 namespace game\domain\models;
 
+use Yii;
+use yii\caching\TagDependency;
+
 /**
  * This is the model class for table "game".
  *
@@ -17,6 +20,8 @@ namespace game\domain\models;
  */
 class Game extends \yii\db\ActiveRecord
 {
+    public const ALL_GAMES_CACHE_TAG = 'allGameCache';
+
     /**
      * {@inheritdoc}
      */
@@ -49,6 +54,20 @@ class Game extends \yii\db\ActiveRecord
             'name' => 'Name',
             'studio_id' => 'Studio ID',
         ];
+    }
+
+    public function afterSave($insert, $changedAttributes)
+    {
+        TagDependency::invalidate(Yii::$app->cache, static::ALL_GAMES_CACHE_TAG);
+
+        parent::afterSave($insert, $changedAttributes);
+    }
+
+    public function afterDelete()
+    {
+        TagDependency::invalidate(Yii::$app->cache, static::ALL_GAMES_CACHE_TAG);
+
+        parent::afterDelete();
     }
 
     /**

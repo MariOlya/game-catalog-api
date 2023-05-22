@@ -13,6 +13,7 @@ use game\domain\models\Game;
 use game\domain\models\Studio;
 use Throwable;
 use Yii;
+use yii\caching\TagDependency;
 use yii\db\ActiveQuery;
 use yii\db\ActiveRecord;
 use yii\db\Query;
@@ -40,7 +41,7 @@ class GameRepository implements GameRepositoryInterface
             $games = $games->where(['in', 'genre', $genreNames]);
         }
 
-        return $games;
+        return $games->cache(true, new TagDependency(['tags' => Game::ALL_GAMES_CACHE_TAG]));
     }
 
     /**
