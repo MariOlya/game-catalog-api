@@ -1,5 +1,7 @@
 <?php
 
+use yii\redis\Connection;
+use yii\redis\Cache;
 use game\infrastructure\modules\Bootstrap;
 use yii\web\JsonParser;
 use game\domain\models\User;
@@ -26,8 +28,15 @@ $config = [
                 'application/json' => JsonParser::class
             ],
         ],
+        'redis' => [
+            'class' => Connection::class,
+            'hostname' => 'redis',
+            'port' => 6379,
+            'database' => 0,
+        ],
         'cache' => [
-            'class' => 'yii\caching\FileCache',
+//            'class' => 'yii\caching\FileCache',
+            'class' => Cache::class,
         ],
         'user' => [
             'identityClass' => User::class,
