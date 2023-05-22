@@ -6,9 +6,7 @@
 <img src="https://img.shields.io/badge/php-%5E8.2.0-blue">
 <img src="https://img.shields.io/badge/mysql-~8.0.33-orange">
 <img src="https://img.shields.io/badge/yii2-~2.0.45-green">
-<img src="https://img.shields.io/badge/phpunit-~9.5.0-blue">
-
-[//]: # (<img src="https://img.shields.io/badge/redis-5-red">)
+<img src="https://img.shields.io/badge/redis-5-red">
 </p>
 <br>
 
@@ -17,10 +15,14 @@ Requirements
 -------------------
 
 Предлагаем выполнить следующее тестовое задание:
+
 Сделать web api для взаимодействия с базой данных, в которой хранятся данные о видеоиграх.
 Реализовать CRUD операции с ней, а также метод для получения списка игр определённого жанра.
+
 Информация об игре: название, студия разработчик, несколько жанров, которым соответствует игра. Используя любой фреймворк или без фреймворка. Действуя согласно SOLID MVC MVVM.
+
 Сделать минимум 3 слоя абстракций, а контроллеры "тонкими".
+
 На выполнение тестового задания отводится неделя времени.
 Выполненное тестовое задание можно передать любым удобным способом: ссылка на git, ссылка на диск или архив.
 
@@ -58,6 +60,7 @@ We work on this project with docker-compose.
 **Images**:
 * yiisoftware/yii2-php:8.2-apache
 * mysql:8.0.33
+* redis:5
 
 To start project you need to add this command in the terminal
 
@@ -131,35 +134,6 @@ The command to generate data
 docker-compose run --rm php yii fixture/generate example --count=n
 ```
 
-TESTING
--------
-
-Tests are located in `tests` directory. We use only unit tests on this project.
-
-Unit tests can be executed by running
-
-```
-vendor/bin/codecept run unit
-```
-
-Functional tests can be executed by running
-
-```
-vendor/bin/codecept run functional
-```
-
-
-### Code coverage support
-
-By default, code coverage is disabled in `codeception.yml` configuration file, you should uncomment needed rows to be able
-to collect code coverage. You can run your tests and collect coverage with the following command:
-
-```
-#collect coverage only for unit tests
-vendor/bin/codecept run unit --coverage --coverage-html --coverage-xml
-```
-
-You can see code coverage output under the `tests/_output` directory.
 
 REST API
 --------
@@ -167,29 +141,34 @@ REST API
 1. `GET /api/games` - Retrieve all games
 
 *Params*
-- 'expand' = 'studio', 'genres' - shows games with these relation data
-- 'genres' = any string with genre(s) with coma without space  - shows games of only concrete genre(s)
-
+- `'expand'` = `'studio'`, `'genres'` - shows games with these relation data
+- `'genres'` = any string with genre(s) with coma without space  - shows games of only concrete genre(s)
 
 2. `GET /api/games/<id>` - Retrieve a specific game
 
 *Params*
-- 'expand' = 'studio', 'genres' - shows games with these relation data
-
+- `'expand'` = `'studio'`, `'genres'` - shows games with these relation data
 
 3. `POST /api/games/create` - Create a new game (always create and return with studio and genres)
 
 *Params (required)*
-- 'name' = name of game
-- 'studio' = name of studio
-- 'genresData' = name(s) of genre(s)
+- `'name'` = name of game
+- `'studio'` = name of studio
+- `'genresData'` = name(s) of genre(s)
 
 4. `PUT /api/games/update/<id>` - Update a game (always return with studio and genres)
 
 *Params (optional)*
-- 'name' = name of game
-- 'studio' = name of studio
-- 'genresData' = name(s) of genre(s)
-
+- `'name'` = name of game
+- `'studio'` = name of studio
+- `'genresData'` = name(s) of genre(s)
 
 5. `DELETE /api/games/delete/<id>` - Delete a game (without params)
+
+
+NOT ADDED BUT REALLY NEEDED
+-------
+
+Critical parts:
+- permissions - not good when everyone can create/update/delete smth
+- tests - we can't be sure that all works correct without tests
