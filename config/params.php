@@ -7,4 +7,5 @@ return [
     'expandModelsForGame' => ['studio', 'genres'],
     'expandParamForRoute' => 'expand=studio, genres',
     'baseApiRoute' => 'http://localhost:8000/api',
+    'defaultCountGivenGames' => 50,
 ];

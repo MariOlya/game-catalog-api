@@ -68,6 +68,7 @@ class GameController extends ActiveController
         return Yii::createObject([
             'class' => ActiveDataProvider::class,
             'query' => $games,
+            'totalCount' => Yii::$app->params['defaultCountGivenGames'],
             'pagination' => [
                 'defaultPageSize' => 10,
             ],
