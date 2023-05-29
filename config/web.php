@@ -70,6 +70,7 @@ $config = [
                 'api/games/create' => 'game/create', // POST /api/games/create - Create a new game
                 'api/games/update/<id:\d+>' => 'game/update', // PUT /api/games/update/1 - Update a game
                 'api/games/delete/<id:\d+>' => 'game/delete', // DELETE /api/games/delete/1 - Delete a game
+                'api/genres/delete/<id:\d+>' => 'genre/delete', // DELETE /api/genres/delete/1 - Delete a genre
             ],
         ],
     ],

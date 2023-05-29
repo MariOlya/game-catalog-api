@@ -1,7 +1,6 @@
 <p align="center">
     <h1 align="center">Game Catalog API</h1>
     <h3 align="center">test task by Olga Marinina</h3>
-</p>
 <p align="center">
 <img src="https://img.shields.io/badge/php-%5E8.2.0-blue">
 <img src="https://img.shields.io/badge/mysql-~8.0.33-orange">
@@ -25,6 +24,12 @@ Requirements
 
 На выполнение тестового задания отводится неделя времени.
 Выполненное тестовое задание можно передать любым удобным способом: ссылка на git, ссылка на диск или архив.
+
+**Additional requests after checking**
+
+Теперь необходимо при удалении жанра делать проверку:
+
+Если жанр привязан хоть к одной игре - то возвращать соответствующую ошибку и не удалять ничего.
 
 
 
@@ -164,6 +169,8 @@ REST API
 - `'genresData'` = name(s) of genre(s)
 
 5. `DELETE /api/games/delete/<id>` - Delete a game (without params)
+
+6. `DELETE /api/genres/delete/<id>>` - Delete a genre (without params)
 
 
 NOT ADDED BUT REALLY NEEDED

@@ -33,7 +33,7 @@ class GameRepository implements GameRepositoryInterface
      * @param string[] $genreNames
      * @return Query|ActiveQuery
      */
-    public function queryAllGames(array $addModels = [],  array $genreNames = [],): Query|ActiveQuery
+    public function queryAllGames(array $addModels = [],  array $genreNames = []): Query|ActiveQuery
     {
         $games = Game::find()->joinWith($addModels);
 
@@ -58,6 +58,11 @@ class GameRepository implements GameRepositoryInterface
             ->one();
     }
 
+    /**
+     * @param int $id
+     * @param array $addModels
+     * @return array|ActiveRecord|null
+     */
     public function findModelById(int $id, array $addModels = []): array|null|ActiveRecord
     {
         return Game::find()

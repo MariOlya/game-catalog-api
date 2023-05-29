@@ -16,5 +16,7 @@ interface GameRepositoryInterface
 
     public function findById(int $id, array $addModels = []): array|null|ActiveRecord;
 
+    public function findModelById(int $id, array $addModels = []): array|null|ActiveRecord;
+
     public function updateGame(int $id, UpdatedGameDto $dto): Game|ActiveRecord;
 }
